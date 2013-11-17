@@ -10,11 +10,14 @@ apt-get update
 apt-get -y dist-upgrade
 
 apt-get -y install \
+  avahi-daemon \
   build-essential \
   emacs23-nox \
+  git \
   python-dev \
   python-mode \
   python-pip \
+  tig \
   tmux
 
 pip install virtualenvwrapper
