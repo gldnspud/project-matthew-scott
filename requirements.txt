@@ -8,3 +8,7 @@
 # ====================
 
 Django==1.6
+
+# Enables in-browser interactive debugging in runserver mode.
+# https://pypi.python.org/pypi/django-werkzeug-debugger-runserver
+django-werkzeug-debugger-runserver==0.2
