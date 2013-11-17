@@ -20,15 +20,19 @@ Connect via SSH::
 
 If you like to use tmux::
 
-    t3$ tmux   # or "tmux -a" if already running
+    $ tmux   # or "tmux -a" if already running
 
 Activate the virtualenv::
 
-    t3$ workon t3
+    $ workon t3
+
+Sync the database::
+
+    $ django-admin.py syncdb --migrate --noinput
 
 Run the Django dev server::
 
-    t3$ django-admin.py runserver 0.0.0.0:8000
+    $ django-admin.py runserver 0.0.0.0:8000
 
 Browse to `<http://t3.local:8000/>`__.
 

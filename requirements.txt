@@ -12,3 +12,13 @@ Django==1.6
 # Enables in-browser interactive debugging in runserver mode.
 # https://pypi.python.org/pypi/django-werkzeug-debugger-runserver
 django-werkzeug-debugger-runserver==0.2
+
+# Authentication
+django-allauth==0.14.2
+python-openid==2.2.5
+requests-oauthlib==0.4.0
+requests==2.0.1
+oauthlib==0.6.0
+
+# Database migration
+south==0.8.3

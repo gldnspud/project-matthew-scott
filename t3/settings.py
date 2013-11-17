@@ -27,8 +27,6 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
 INSTALLED_APPS = (
     # Django
     # ======
@@ -43,6 +41,9 @@ INSTALLED_APPS = (
     # Third-party
     # ===========
 
+    'allauth',
+    'allauth.account',
+    'south',
     'werkzeug_debugger_runserver',
 
     # T3
@@ -53,6 +54,8 @@ INSTALLED_APPS = (
     # and views that don't belong in another app.
     't3',
 )
+# Application definition
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -96,3 +99,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Processors, middleware, and backends
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'allauth.account.context_processors.account',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)

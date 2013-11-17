@@ -10,5 +10,7 @@ urlpatterns = patterns('t3.views',
 
     url(r'^$', 'index'),
 
+    url(r'^accounts/', include('allauth.urls')),
+
     url(r'^admin/', include(admin.site.urls)),
 )

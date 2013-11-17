@@ -50,3 +50,6 @@ docs/_build/
 .idea/tasks.xml
 .idea/workspace.xml
 .idea/vagrant.xml
+
+# Sqlite3 databases:
+*.sqlite3
