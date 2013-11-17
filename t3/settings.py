@@ -47,6 +47,11 @@ INSTALLED_APPS = (
 
     # T3
     # ==
+
+    # The 't3' package itself is an app,
+    # for the purpose of loading project-wide templates and static files,
+    # and views that don't belong in another app.
+    't3',
 )
 
 MIDDLEWARE_CLASSES = (
