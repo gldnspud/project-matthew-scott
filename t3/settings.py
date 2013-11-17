@@ -26,6 +26,10 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
+
+
+# Application definition
 
 INSTALLED_APPS = (
     # Django
@@ -35,16 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Third-party
-    # ===========
-
-    'allauth',
-    'allauth.account',
-    'south',
-    'werkzeug_debugger_runserver',
 
     # T3
     # ==
@@ -53,9 +50,19 @@ INSTALLED_APPS = (
     # for the purpose of loading project-wide templates and static files,
     # and views that don't belong in another app.
     't3',
-)
-# Application definition
 
+    # Third-party
+    # ===========
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'south',
+    'werkzeug_debugger_runserver',
+)
+
+
+# Middleware
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -66,7 +73,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+
+# Urls
+
 ROOT_URLCONF = 't3.urls'
+
+
+# App server
 
 WSGI_APPLICATION = 't3.wsgi.application'
 
@@ -80,6 +93,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -101,7 +115,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# Processors, middleware, and backends
+# Template context
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -113,9 +127,19 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'allauth.account.context_processors.account',
+    'allauth.socialaccount.context_processors.socialaccount',
 )
+
+
+# Auth
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+
+ACCOUNT_EMAIL_REQUIRED = False
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
