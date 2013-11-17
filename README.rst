@@ -26,6 +26,12 @@ Activate the virtualenv::
 
     t3$ workon t3
 
+Run the Django dev server::
+
+    t3$ django-admin.py runserver 0.0.0.0:8000
+
+Browse to `<http://t3.local:8000/>`__.
+
 
 License and Copyright
 =====================
