@@ -45,3 +45,8 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# PyCharm user-specific files
+.idea/tasks.xml
+.idea/workspace.xml
+.idea/vagrant.xml
