@@ -45,3 +45,7 @@ sudo -u vagrant bash -c "
   setvirtualenvproject;
   pip install -r requirements.txt;
 "
+
+cat > /home/vagrant/.virtualenvs/t3/bin/postactivate <<EOF
+export DJANGO_SETTINGS_MODULE=t3.settings
+EOF
