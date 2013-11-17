@@ -3,6 +3,30 @@ Toptal Todo Tackler (T3)
 ========================
 
 
+Quick Start
+===========
+
+Bootstrap::
+
+    host$ vagrant up --provider vmware_fusion
+                            (or vmware_workstation)
+
+    host$ scp ~/.gitconfig vagrant@t3.local:.
+    Password: vagrant
+
+Connect via SSH::
+
+    host$ vagrant ssh
+
+If you like to use tmux::
+
+    t3$ tmux   # or "tmux -a" if already running
+
+Activate the virtualenv::
+
+    t3$ workon t3
+
+
 License and Copyright
 =====================
 
