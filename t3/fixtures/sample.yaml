@@ -17,9 +17,28 @@
   model: auth.user
   pk: 1
 
+- fields:
+    date_joined: 2013-11-18 01:21:59.205696+00:00
+    email: user2@example.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2013-11-18 01:21:59.205696+00:00
+    last_name: ''
+    password: pbkdf2_sha256$12000$vS2HNtyAiO9K$Ac5Fja/o5DhKJpuPixxB9YfZB218/xzYLzyp/Iq1NtU=
+    user_permissions: []
+    username: user2
+  model: auth.user
+  pk: 2
+
 
 # todo.item
 # =========
+
+# user
+# ----
 
 - fields: {due_date: null, priority: 2, text: Eat vegetables, user: 1}
   model: todo.item
@@ -37,3 +56,10 @@
 - fields: {due_date: 2013-11-18, priority: 3, text: Take out trash, user: 1}
   model: todo.item
   pk: 5
+
+# user2
+# -----
+
+- fields: {due_date: null, priority: 1, text: Drink water, user: 2}
+  model: todo.item
+  pk: 6
