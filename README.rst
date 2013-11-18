@@ -26,10 +26,6 @@ Activate the virtualenv::
 
     $ workon t3
 
-Sync the database::
-
-    $ da syncdb --migrate --noinput
-
 Run the Django dev server::
 
     $ da runserver 0.0.0.0:8000
