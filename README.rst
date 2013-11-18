@@ -28,11 +28,11 @@ Activate the virtualenv::
 
 Sync the database::
 
-    $ django-admin.py syncdb --migrate --noinput
+    $ da syncdb --migrate --noinput
 
 Run the Django dev server::
 
-    $ django-admin.py runserver 0.0.0.0:8000
+    $ da runserver 0.0.0.0:8000
 
 Browse to `<http://t3.local:8000/>`__.
 

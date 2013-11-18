@@ -24,7 +24,7 @@ pip install virtualenvwrapper
 
 VENV_DIRS="/home/vagrant/.virtualenvs"
 mkdir -p ${VENV_DIRS}
-chown vagrant.vagrant ${VENV_DIRS}
+chown -R vagrant.vagrant ${VENV_DIRS}
 
 if ! grep -q virtualenvwrapper /home/vagrant/.bashrc; then
   cat > /home/vagrant/.bash_profile <<EOF
@@ -46,6 +46,16 @@ sudo -u vagrant bash -c "
   pip install -r requirements.txt;
 "
 
+chown -R vagrant.vagrant ${VENV_DIRS}
+
 cat > /home/vagrant/.virtualenvs/t3/bin/postactivate <<EOF
 export DJANGO_SETTINGS_MODULE=t3.settings
+alias da=django-admin.py
 EOF
+
+sudo -u vagrant bash -c "
+  . /usr/local/bin/virtualenvwrapper.sh;
+  workon t3;
+  da syncdb --migrate --noinput;
+  da loaddata t3/fixtures/sample.yaml;
+"
