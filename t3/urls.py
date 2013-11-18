@@ -11,6 +11,7 @@ urlpatterns = patterns('t3.views',
     url(r'^$', 'index', name='index'),
 
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/profile/$', 'profile', name='account_profile'),
 
     url(r'^admin/', include(admin.site.urls)),
 )

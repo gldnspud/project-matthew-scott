@@ -20,6 +20,8 @@
   <body>
     {% block body %}
       {% block header %}
+        {# Note: the use of blocks to determine active nav elements #}
+        {# precludes this div from being comfortably extracted to an included file. #}
         <div class="navbar navbar-inverse navbar-static-top">
           <div class="container">
             <div class="navbar-header">
@@ -42,6 +44,8 @@
                   <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
                   <li><a href="{% url 'account_login' %}">Sign In</a></li>
                 {% else %}
+                  <li class="navbar-text">Hello, {{ user.username }}!</li>
+                  <li><a href="{% url 'account_profile' %}">Profile</a></li>
                   <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
                 {% endif %}
               </ul>
