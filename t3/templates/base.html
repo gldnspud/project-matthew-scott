@@ -45,7 +45,7 @@
                   <li><a href="{% url 'account_login' %}">Sign In</a></li>
                 {% else %}
                   <li class="navbar-text">Hello, {{ user.username }}!</li>
-                  <li><a href="{% url 'account_profile' %}">Profile</a></li>
+                  <li class="{% block navclass-profile %}{% endblock %}"><a href="{% url 'account_profile' %}">Profile</a></li>
                   <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
                 {% endif %}
               </ul>
