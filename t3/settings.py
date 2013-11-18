@@ -56,10 +56,11 @@ INSTALLED_APPS = (
 
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+    #'allauth.socialaccount',
     'rest_framework',
-    'south',
+    'rest_framework.authtoken',
     'werkzeug_debugger_runserver',
+    'south',
 )
 
 
