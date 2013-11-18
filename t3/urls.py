@@ -28,4 +28,6 @@ urlpatterns = patterns('t3.views',
 
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    url(r'^todo/', include('t3.apps.todo.urls', namespace='todo')),
 )

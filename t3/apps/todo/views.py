@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework import viewsets
 
 from .models import Item
@@ -13,3 +14,7 @@ class ItemViewSet(viewsets.ModelViewSet):
         qs = super(ItemViewSet, self).get_queryset()
         qs = qs.filter(user=self.request.user)
         return qs
+
+
+def index(request):
+    return render(request, 'todo/index.html')

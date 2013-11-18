@@ -37,7 +37,7 @@
             </div>
             <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
-                <li class="{% block navclass-todolist %}{% endblock %}"><a href="{% url 'index' %}">Todo List</a></li>
+                <li class="{% block navclass-todolist %}{% endblock %}"><a href="{% url 'todo:index' %}">Todo List</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_anonymous %}
