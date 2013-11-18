@@ -50,13 +50,13 @@ INSTALLED_APPS = (
     # for the purpose of loading project-wide templates and static files,
     # and views that don't belong in another app.
     't3',
+    't3.apps.todo',
 
     # Third-party
     # ===========
 
     'allauth',
     'allauth.account',
-    #'allauth.socialaccount',
     'rest_framework',
     'rest_framework.authtoken',
     'werkzeug_debugger_runserver',
@@ -129,7 +129,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
     'allauth.account.context_processors.account',
-    'allauth.socialaccount.context_processors.socialaccount',
 )
 
 
