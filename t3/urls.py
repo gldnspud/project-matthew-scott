@@ -3,11 +3,15 @@ from django.contrib import admin
 
 from rest_framework import routers
 
+from t3.apps import todo
+import t3.apps.todo.views
+
 
 admin.autodiscover()
 
 
 router = routers.DefaultRouter()
+router.register(r'items', todo.views.ItemViewSet)
 
 
 urlpatterns = patterns('t3.views',
