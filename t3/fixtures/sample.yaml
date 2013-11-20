@@ -40,26 +40,26 @@
 # user
 # ----
 
-- fields: {due_date: null, priority: 2, text: Eat vegetables, user: 1}
+- fields: {due_date: null, priority: 2, text: Eat vegetables, user: 1, completed: false}
   model: todo.item
   pk: 1
-- fields: {due_date: null, priority: 1, text: Drink water, user: 1}
+- fields: {due_date: null, priority: 1, text: Drink water, user: 1, completed: true}
   model: todo.item
   pk: 2
-- fields: {due_date: null, priority: 2, text: Smile at someone, user: 1}
+- fields: {due_date: null, priority: 2, text: Smile at someone, user: 1, completed: false}
   model: todo.item
   pk: 3
 - fields: {due_date: 2013-11-20, priority: 3, text: Create toptal sample project,
-    user: 1}
+    user: 1, completed: false}
   model: todo.item
   pk: 4
-- fields: {due_date: 2013-11-18, priority: 3, text: Take out trash, user: 1}
+- fields: {due_date: 2013-11-18, priority: 3, text: Take out trash, user: 1, completed: false}
   model: todo.item
   pk: 5
 
 # user2
 # -----
 
-- fields: {due_date: null, priority: 1, text: Drink water, user: 2}
+- fields: {due_date: null, priority: 1, text: Drink water, user: 2, completed: true}
   model: todo.item
   pk: 6
