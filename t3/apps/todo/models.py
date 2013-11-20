@@ -5,6 +5,7 @@ class Item(models.Model):
 
     user = models.ForeignKey('auth.User', db_index=True)
     text = models.TextField()
+    completed = models.BooleanField(default=False)
     priority = models.IntegerField(default=1)
     due_date = models.DateField(blank=True, null=True)
 
