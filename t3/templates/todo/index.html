@@ -11,7 +11,7 @@ active
 
     $.getJSON('/api/items/', function (data) {
       _(data).each(function (item) {
-        PubSub.publishSync(t3.topics.ITEM_ADDED, item);
+        PubSub.publishSync(t3.topics.item.added, item);
       });
     });
   </script>

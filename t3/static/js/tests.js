@@ -11,7 +11,7 @@ describe('todo.List', function () {
     });
 
     it("should listen for 'item.added' messages and add corresponding todo.Item objects", function () {
-      PubSub.publishSync(t3.topics.ITEM_ADDED, {
+      PubSub.publishSync(t3.topics.item.added, {
         text: 'Drink water',
         completed: false,
         priority: 1,
