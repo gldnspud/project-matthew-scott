@@ -13,6 +13,7 @@ t3.views.todo.Item = function (values) {
 
   values = values || {};
 
+  this.id = ko.observable(values.id);
   this.text = ko.observable(values.text);
   this.completed = ko.observable(values.completed);
   this.priority = ko.observable(values.priority);
