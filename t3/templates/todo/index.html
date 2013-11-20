@@ -33,8 +33,14 @@ active
     <tbody>
       <!-- ko foreach: items -->
         <tr>
-          <td><input type="checkbox" data-bind="checked: completed"/></td>
-          <td><span data-bind="text: text"></span></td>
+          <td><input type="checkbox" data-bind="
+            checked: completed,
+            attr: { id: id }
+            "/></td>
+          <td><label data-bind="
+            text: text,
+            attr: { 'for': id }
+            "></label></td>
           <td><span data-bind="text: priority"></span></td>
           <td><span data-bind="text: due_date"></span></td>
         </tr>
