@@ -3,3 +3,44 @@
 {% block navclass-todolist %}
 active
 {% endblock %}
+
+{% block extra_js %}
+  <script type="text/javascript">
+    var todoListViewModel = new t3.views.todo.List();
+    ko.applyBindings(todoListViewModel);
+
+    $.getJSON('/api/items/', function (data) {
+      _(data).each(function (item) {
+        PubSub.publishSync(t3.topics.ITEM_ADDED, item);
+      });
+    });
+  </script>
+{% endblock %}
+
+{% block content %}
+
+  <table class="table">
+
+    <thead>
+      <tr>
+        <th style="width: 1em">&nbsp;</th>
+        <th>&nbsp;</th>
+        <th style="width: 5em">Priority</th>
+        <th style="width: 10em">Due</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- ko foreach: items -->
+        <tr>
+          <td><input type="checkbox" data-bind="checked: completed"/></td>
+          <td><span data-bind="text: text"></span></td>
+          <td><span data-bind="text: priority"></span></td>
+          <td><span data-bind="text: due_date"></span></td>
+        </tr>
+      <!-- /ko -->
+    </tbody>
+
+  </table>
+
+{% endblock %}

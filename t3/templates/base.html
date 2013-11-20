@@ -64,13 +64,18 @@
       </div>
     {% endblock %}
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- third party -->
     <script type="text/javascript" src="{% static 'vendor/jquery/1.10.2/jquery.min.js' %}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script type="text/javascript" src="{% static 'vendor/bootstrap/3.0.2/js/bootstrap.min.js' %}"></script>
-    <!-- Knockout.js -->
     <script type="text/javascript" src="{% static 'vendor/knockout/3.0.0/knockout.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/pubsubjs/1.4.0/pubsub.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendor/underscore/1.5.0/underscore-min.js' %}"></script>
+
     <!-- T3 project -->
     <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
+
+    {% block extra_js %}
+    {% endblock %}
+
   </body>
 </html>
