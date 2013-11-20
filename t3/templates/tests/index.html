@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>T3 Tests</title>
+  <link rel="stylesheet" href="{% static 'vendor/mocha/1.14.0/mocha.css' %}"/>
+</head>
+<body>
+  <div id="mocha"></div>
+  <script type="text/javascript" src="{% static 'vendor/jquery/1.10.2/jquery.js' %}"></script>
+  <script type="text/javascript" src="{% static 'vendor/knockout/3.0.0/knockout.js' %}"></script>
+  <script type="text/javascript" src="{% static 'vendor/pubsubjs/1.4.0/pubsub.js' %}"></script>
+  <script type="text/javascript" src="{% static 'vendor/underscore/1.5.0/underscore-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'vendor/should/2.1.0/should.js' %}"></script>
+  <script type="text/javascript" src="{% static 'vendor/mocha/1.14.0/mocha.js' %}"></script>
+  <script type="text/javascript">mocha.setup('bdd')</script>
+  <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/tests.js' %}"></script>
+  <script>
+    mocha.checkLeaks();
+    mocha.globals(['jQuery']);
+    mocha.run();
+  </script>
+</body>
+</html>

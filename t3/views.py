@@ -16,6 +16,10 @@ def index(request):
     return response
 
 
+def tests(request):
+    return render(request, 'tests/index.html')
+
+
 @login_required
 def profile(request):
     token, created = Token.objects.get_or_create(user=request.user)

@@ -15,10 +15,6 @@ router.register(r'items', todo.views.ItemViewSet)
 
 
 urlpatterns = patterns('t3.views',
-    # Examples:
-    # url(r'^$', 't3.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
     url(r'^$', 'index', name='index'),
 
     url(r'^accounts/', include('allauth.urls')),
@@ -30,4 +26,6 @@ urlpatterns = patterns('t3.views',
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     url(r'^todo/', include('t3.apps.todo.urls', namespace='todo')),
+
+    url(r'^tests/', 'tests'),
 )

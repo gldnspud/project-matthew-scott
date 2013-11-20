@@ -40,7 +40,7 @@
                 {% if user.is_authenticated %}
                   <li class="{% block navclass-todolist %}{% endblock %}"><a href="{% url 'todo:index' %}">Todo List</a></li>
                 {% else %}
-                  <li class="{% block navclass-about %}{% endblock %}"><a href="{% url 'index' %}">About</a></li>
+                  <li class="{% block navclass-about %}{% endblock %}"><a href="{% url 'index' %}`">About</a></li>
                 {% endif %}
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -68,6 +68,8 @@
     <script type="text/javascript" src="{% static 'vendor/jquery/1.10.2/jquery.min.js' %}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script type="text/javascript" src="{% static 'vendor/bootstrap/3.0.2/js/bootstrap.min.js' %}"></script>
+    <!-- Knockout.js -->
+    <script type="text/javascript" src="{% static 'vendor/knockout/3.0.0/knockout.js' %}"></script>
     <!-- T3 project -->
     <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
   </body>
