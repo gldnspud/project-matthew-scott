@@ -14,11 +14,68 @@ t3.views.todo.Item = function (values) {
 
   values = values || {};
 
-  this.id = ko.observable(values.id);
-  this.text = ko.observable(values.text);
-  this.completed = ko.observable(values.completed);
-  this.priority = ko.observable(values.priority);
-  this.due_date = ko.observable(values.due_date);
+  var self = this;
+
+  self.id = ko.observable(values.id);
+  self.text = ko.observable(values.text);
+  self.completed = ko.observable(values.completed);
+  self.priority = ko.observable(values.priority);
+  self.due_date = ko.observable(values.due_date);
+
+  self.editors = {};
+
+  self.editors.currentActive = ko.observable();
+
+  self.editors.text = {};
+  self.editors.text.newValue = ko.observable();
+  self.editors.text.isActive = ko.computed(function () {
+    return self.editors.currentActive() == 'text';
+  });
+  self.editors.text.canSave = ko.computed(function () {
+    return self.editors.text.newValue() !== '';
+  });
+  self.editors.text.edit = function () {
+    self.editors.text.newValue(self.text());
+    self.editors.currentActive('text');
+  };
+  self.editors.text.save = function () {
+    self.text(self.editors.text.newValue());
+    self.editors.currentActive(undefined);
+  };
+
+  self.editors.priority = {};
+  self.editors.priority.newValue = ko.observable();
+  self.editors.priority.isActive = ko.computed(function () {
+    return self.editors.currentActive() == 'priority';
+  });
+  self.editors.priority.canSave = ko.computed(function () {
+    return self.editors.priority.newValue() !== '';
+  });
+  self.editors.priority.edit = function () {
+    self.editors.priority.newValue(self.priority());
+    self.editors.currentActive('priority');
+  };
+  self.editors.priority.save = function () {
+    self.priority(self.editors.priority.newValue());
+    self.editors.currentActive(undefined);
+  };
+
+  self.editors.due_date = {};
+  self.editors.due_date.newValue = ko.observable();
+  self.editors.due_date.isActive = ko.computed(function () {
+    return self.editors.currentActive() == 'due_date';
+  });
+  self.editors.due_date.canSave = ko.computed(function () {
+    return self.editors.due_date.newValue() !== '';
+  });
+  self.editors.due_date.edit = function () {
+    self.editors.due_date.newValue(self.due_date());
+    self.editors.currentActive('due_date');
+  };
+  self.editors.due_date.save = function () {
+    self.due_date(self.editors.due_date.newValue());
+    self.editors.currentActive(undefined);
+  };
 
 };
 

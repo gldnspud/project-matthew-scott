@@ -29,7 +29,7 @@ active
 
 {% block content %}
 
-  <table class="table">
+  <table class="table table-condensed">
 
     <thead>
       <tr>
@@ -46,7 +46,7 @@ active
         <td>
           <form data-bind="submit: addNewItem">
             <div class="input-group" style="width: 100%">
-              <input type="text" id="text" class="form-control input-sm"
+              <input type="text" class="form-control input-sm"
                      placeholder="Enter a new todo item"
                      data-bind="value: newItemText, valueUpdate: 'afterkeydown'" />
               <span class="input-group-btn">
@@ -59,16 +59,80 @@ active
       </tr>
       <!-- ko foreach: items -->
         <tr>
-          <td><input type="checkbox" data-bind="
-            checked: completed,
-            attr: { id: id }
-            "/></td>
-          <td><label data-bind="
-            text: text,
-            attr: { 'for': id }
-            "></label></td>
-          <td><span data-bind="text: priority"></span></td>
-          <td><span data-bind="text: due_date"></span></td>
+          <td>
+            <input type="checkbox" data-bind="checked: completed, attr: { id: id }"/>
+          </td>
+
+          <!-- ##### text ##### -->
+          
+          <!-- ko ifnot: editors.text.isActive -->
+            <td data-bind="click: editors.text.edit">
+              <span data-bind="text: text"></span>
+            </td>
+          <!-- /ko -->
+          <!-- ko if: editors.text.isActive -->
+            <td>
+              <form data-bind="submit: editors.text.save">
+                <input type="text" class="form-control input-sm"
+                       data-bind="hasFocus: editors.text.isActive,
+                                  value: editors.text.newValue,
+                                  valueUpdate: 'afterkeydown',
+                                  event: {blur: editors.text.save}" />
+              </form>
+            </td>
+          <!-- /ko -->
+
+          <!-- ##### priority ##### -->
+          
+          <!-- ko ifnot: editors.priority.isActive -->
+            <td data-bind="click: editors.priority.edit">
+              <span data-bind="text: priority"></span>
+            </td>
+          <!-- /ko -->
+          <!-- ko if: editors.priority.isActive -->
+            <td>
+              <form data-bind="submit: editors.priority.save">
+                <div class="input-group" style="width: 100%">
+                  <select class="form-control input-sm"
+                          data-bind="hasFocus: editors.priority.isActive,
+                                     value: editors.priority.newValue,
+                                     event: {change: editors.priority.save,
+                                             blur: editors.priority.save}">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </form>
+            </td>
+          <!-- /ko -->
+
+          <!-- ##### due_date ##### -->
+          
+          <!-- ko ifnot: editors.due_date.isActive -->
+            <td data-bind="click: editors.due_date.edit">
+              <!-- ko if: due_date -->
+                <span data-bind="text: due_date"></span>
+              <!-- /ko -->
+              <!-- ko ifnot: due_date -->
+                <span>--</span>
+              <!-- /ko -->
+            </td>
+          <!-- /ko -->
+          <!-- ko if: editors.due_date.isActive -->
+            <td>
+              <form data-bind="submit: editors.due_date.save">
+                <input type="text" class="form-control input-sm"
+                       data-bind="hasFocus: editors.due_date.isActive,
+                                  value: editors.due_date.newValue,
+                                  valueUpdate: 'afterkeydown',
+                                  event: {blur: editors.due_date.save}" />
+              </form>
+            </td>
+          <!-- /ko -->
+
         </tr>
       <!-- /ko -->
     </tbody>
