@@ -6,3 +6,10 @@ body {
 .jumbotron {
   margin-top: 19px;
 }
+
+.todo-item.completed .todo-text,
+.todo-item.completed .todo-priority,
+.todo-item.completed .todo-duedate {
+  color: lightgray;
+  text-decoration: line-through;
+}

@@ -64,8 +64,10 @@ t3.views.todo.Item = function (values) {
     return self.editors.text.newValue() !== '';
   });
   self.editors.text.edit = function () {
-    self.editors.text.newValue(self.text());
-    self.editors.currentActive('text');
+    if (!self.completed()) {
+      self.editors.text.newValue(self.text());
+      self.editors.currentActive('text');
+    }
   };
   self.editors.text.save = function () {
     self.text(self.editors.text.newValue());
@@ -85,8 +87,10 @@ t3.views.todo.Item = function (values) {
     return self.editors.priority.newValue() !== '';
   });
   self.editors.priority.edit = function () {
-    self.editors.priority.newValue(self.priority());
-    self.editors.currentActive('priority');
+    if (!self.completed()) {
+      self.editors.priority.newValue(self.priority());
+      self.editors.currentActive('priority');
+    }
   };
   self.editors.priority.save = function () {
     self.priority(self.editors.priority.newValue());
@@ -106,8 +110,10 @@ t3.views.todo.Item = function (values) {
     return self.editors.due_date.newValue() !== '';
   });
   self.editors.due_date.edit = function () {
-    self.editors.due_date.newValue(self.due_date());
-    self.editors.currentActive('due_date');
+    if (!self.complete()) {
+      self.editors.due_date.newValue(self.due_date());
+      self.editors.currentActive('due_date');
+    }
   };
   self.editors.due_date.save = function () {
     self.due_date(self.editors.due_date.newValue());
