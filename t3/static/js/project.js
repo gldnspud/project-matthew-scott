@@ -133,7 +133,7 @@ t3.views.todo.Item = function (values) {
     return self.editors.due_date.newValue() !== '';
   });
   self.editors.due_date.edit = function () {
-    if (!self.complete()) {
+    if (!self.completed()) {
       self.editors.due_date.newValue(self.due_date());
       self.editors.currentActive('due_date');
     }
