@@ -34,7 +34,7 @@ describe('todo.List', function () {
 
   describe('#sortedItems', function () {
 
-    it("should have the same amount of tiems as #items");
+    it("should have the same amount of items as #items");
 
   });
 
