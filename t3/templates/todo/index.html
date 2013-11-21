@@ -45,15 +45,9 @@ active
         <td>&nbsp;</td>
         <td>
           <form data-bind="submit: addNewItem">
-            <div class="input-group" style="width: 100%">
-              <input type="text" class="form-control input-sm"
-                     placeholder="Enter a new todo item"
-                     data-bind="value: newItemText, valueUpdate: 'afterkeydown'" />
-              <span class="input-group-btn">
-                <button class="btn btn-primary btn-sm" type="submit"
-                        data-bind="enable: canAddNewItem">Add</button>
-              </span>
-            </div>
+            <input type="text" class="form-control input-sm"
+                   placeholder="Enter a new todo item and press Enter"
+                   data-bind="value: newItemText, valueUpdate: 'afterkeydown'" />
           </form>
         </td>
       </tr>
