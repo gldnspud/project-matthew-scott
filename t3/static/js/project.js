@@ -22,6 +22,35 @@ t3.views.todo.Item = function (values) {
   self.priority = ko.observable(values.priority);
   self.due_date = ko.observable(values.due_date);
 
+  self.persist = function () {
+    if (self.id() >= 0) {
+      var data = JSON.stringify({
+        text: self.text(),
+        completed: self.completed(),
+        priority: self.priority(),
+        due_date: self.due_date()
+      });
+      var request = $.ajax({
+        url: '/api/items/' + self.id() + '/',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: data,
+        type: 'PUT'
+      });
+      request.success(function () {
+        // TODO: Reflect success in UI.
+      });
+      request.error(function () {
+        // TODO: Reflect error in UI.
+      });
+    } else {
+      // Original item not yet persisted.
+      // TODO: Try again after timeout.
+    }
+  };
+
+  self.completed.subscribe(self.persist);
+
   self.editors = {};
 
   self.editors.currentActive = ko.observable();
@@ -41,6 +70,7 @@ t3.views.todo.Item = function (values) {
   self.editors.text.save = function () {
     self.text(self.editors.text.newValue());
     self.editors.currentActive(undefined);
+    self.persist();
   };
   self.editors.text.cancel = function () {
     self.editors.currentActive(undefined);
@@ -61,6 +91,7 @@ t3.views.todo.Item = function (values) {
   self.editors.priority.save = function () {
     self.priority(self.editors.priority.newValue());
     self.editors.currentActive(undefined);
+    self.persist();
   };
   self.editors.priority.cancel = function () {
     self.editors.currentActive(undefined);
@@ -81,6 +112,7 @@ t3.views.todo.Item = function (values) {
   self.editors.due_date.save = function () {
     self.due_date(self.editors.due_date.newValue());
     self.editors.currentActive(undefined);
+    self.persist();
   };
   self.editors.due_date.cancel = function () {
     self.editors.currentActive(undefined);
@@ -141,6 +173,9 @@ t3.views.todo.List = function () {
       delete idItemMap[message.id];
       idItemMap[response.id] = item;
     });
+    request.error(function () {
+      // TODO: reflect error in UI.
+    });
   });
 
 };
@@ -164,7 +199,7 @@ function getCookie(name) {
 var csrftoken = getCookie('csrftoken');
 $.ajaxSetup({
   beforeSend: function (xhr, s) {
-    if (s.type == 'POST') {
+    if (s.type == 'POST' || s.type == 'PUT' || s.type == 'DELETE') {
       xhr.setRequestHeader('X-CSRFToken', csrftoken);
     }
   }
