@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block navclass-todolist %}
 active
 {% endblock %}
 
 {% block extra_js %}
+  <script type="text/javascript" src="{% static 'vendor/JSON/2013-05-26/json2.js' %}"></script>
+  <script type="text/javascript" src="{% static 'vendor/knockout/3.0.0/knockout.js' %}"></script>
+  <script type="text/javascript" src="{% static 'vendor/pubsubjs/1.4.0/pubsub.js' %}"></script>
+  <script type="text/javascript" src="{% static 'vendor/underscore/1.5.0/underscore-min.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
+
   <script type="text/javascript">
     var todoListViewModel = new t3.views.todo.List();
     ko.applyBindings(todoListViewModel);
+
+    $('#text').focus();
 
     $.getJSON('/api/items/', function (data) {
       _(data).each(function (item) {
@@ -23,7 +33,7 @@ active
 
     <thead>
       <tr>
-        <th style="width: 1em">&nbsp;</th>
+        <th style="width: 2em">&nbsp;</th>
         <th>&nbsp;</th>
         <th style="width: 5em">Priority</th>
         <th style="width: 10em">Due</th>
@@ -34,13 +44,17 @@ active
       <tr>
         <td>&nbsp;</td>
         <td>
-          <div class="input-group" style="width: 100%">
-            <input type="text" id="text" class="form-control input-sm"
-                   placeholder="Enter a new todo item" />
-            <span class="input-group-btn">
-              <button class="btn btn-primary btn-sm" type="button">Add</button>
-            </span>
-          </div>
+          <form data-bind="submit: addNewItem">
+            <div class="input-group" style="width: 100%">
+              <input type="text" id="text" class="form-control input-sm"
+                     placeholder="Enter a new todo item"
+                     data-bind="value: newItemText, valueUpdate: 'afterkeydown'" />
+              <span class="input-group-btn">
+                <button class="btn btn-primary btn-sm" type="submit"
+                        data-bind="enable: canAddNewItem">Add</button>
+              </span>
+            </div>
+          </form>
         </td>
       </tr>
       <!-- ko foreach: items -->
