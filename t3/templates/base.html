@@ -16,6 +16,9 @@
     <![endif]-->
 
     <link rel="stylesheet" href="{% static 'css/project.css' %}"/>
+
+    {% block extra_css %}
+    {% endblock %}
   </head>
   <body>
     {% block body %}

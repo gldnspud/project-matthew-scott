@@ -5,11 +5,16 @@
 active
 {% endblock %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker/2013-11-21-4e03b4cb9f/datepicker3.css' %}"/>
+{% endblock %}
+
 {% block extra_js %}
   <script type="text/javascript" src="{% static 'vendor/JSON/2013-05-26/json2.js' %}"></script>
   <script type="text/javascript" src="{% static 'vendor/knockout/3.0.0/knockout.js' %}"></script>
   <script type="text/javascript" src="{% static 'vendor/pubsubjs/1.4.0/pubsub.js' %}"></script>
   <script type="text/javascript" src="{% static 'vendor/underscore/1.5.0/underscore-min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'vendor/bootstrap-datepicker/2013-11-21-4e03b4cb9f/datepicker3.js' %}"></script>
 
   <script type="text/javascript" src="{% static 'js/bindinghandlers.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
@@ -18,8 +23,10 @@ active
     var todoListViewModel = new t3.views.todo.List();
     ko.applyBindings(todoListViewModel);
 
+    // let user add items right away
     $('#text').focus();
 
+    // grab existing items from the server
     $.getJSON('/api/items/', function (data) {
       _(data).each(function (item) {
         PubSub.publishSync(t3.topics.item.added, item);
@@ -123,11 +130,15 @@ active
             <td class="todo-duedate">
               <form data-bind="submit: editors.due_date.save">
                 <input type="text" class="form-control input-sm"
+                       data-provide="datepicker"
+                       data-date-format="yyyy-mm-dd"
+                       data-date-autoclose="true"
+                       data-date-clear-btn="true"
                        data-bind="hasFocus: editors.due_date.isActive,
                                   value: editors.due_date.newValue,
                                   valueUpdate: 'afterkeydown',
                                   escPress: editors.due_date.cancel,
-                                  event: {blur: editors.due_date.save}" />
+                                  event: {hide: editors.due_date.save}" />
               </form>
             </td>
           <!-- /ko -->
