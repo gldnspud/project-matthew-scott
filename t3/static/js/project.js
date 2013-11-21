@@ -5,6 +5,7 @@ t3.topics = t3.topics || {};
 t3.topics.item = t3.topics.item || {};
 t3.topics.item.added = 'item.added';
 t3.topics.item.create = 'item.create';
+t3.topics.item.remove = 'item.remove';
 
 t3.views = t3.views || {};
 
@@ -47,6 +48,28 @@ t3.views.todo.Item = function (values) {
       // Original item not yet persisted.
       // TODO: Try again after timeout.
     }
+  };
+
+  self.remove = function () {
+    // remote
+    if (self.id() >= 0) {
+      var request = $.ajax({
+        url: '/api/items/' + self.id() + '/',
+        contentType: 'application/json',
+        type: 'DELETE'
+      });
+      request.success(function () {
+        // TODO: Reflect success in UI.
+      });
+      request.error(function () {
+        // TODO: Reflect error in UI.
+      });
+    } else {
+      // Original item not yet persisted.
+      // TODO: Try again after timeout.
+    }
+    // local
+    PubSub.publish(t3.topics.item.remove, {id: self.id()});
   };
 
   self.completed.subscribe(self.persist);
@@ -181,6 +204,14 @@ t3.views.todo.List = function () {
     });
     request.error(function () {
       // TODO: reflect error in UI.
+    });
+  });
+
+  // item.remove -> remove item from items and id:item map
+  PubSub.subscribe(t3.topics.item.remove, function (topic, message) {
+    delete idItemMap[message.id];
+    self.items.remove(function (item) {
+      return item.id() == message.id;
     });
   });
 

@@ -34,10 +34,11 @@ active
 
     <thead>
       <tr>
-        <th style="width: 2em">&nbsp;</th>
-        <th>&nbsp;</th>
+        <th style="width: 2em">&nbsp;<!-- completed --></th>
+        <th>&nbsp;<!-- text --></th>
         <th style="width: 5em">Priority</th>
         <th style="width: 10em">Due</th>
+        <th style="width: 1em">&nbsp;<!-- delete --></th>
       </tr>
     </thead>
 
@@ -130,6 +131,10 @@ active
               </form>
             </td>
           <!-- /ko -->
+
+          <td class="todo-delete">
+            <i class="glyphicon glyphicon-trash" data-bind="click: remove"></i>
+          </td>
 
         </tr>
       <!-- /ko -->
