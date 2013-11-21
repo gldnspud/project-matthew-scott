@@ -6,11 +6,11 @@ describe('todo.List', function () {
 
     var list = new t3.views.todo.List();
 
-    it("should begin empty", function () {
+    it("begins empty", function () {
       list.items().length.should.equal(0);
     });
 
-    it("should listen for 'item.added' messages and add corresponding todo.Item objects", function () {
+    it("listens for 'item.added' messages and add corresponding todo.Item objects", function () {
       PubSub.publishSync(t3.topics.item.added, {
         id: 1,
         text: 'Drink water',
@@ -34,7 +34,7 @@ describe('todo.List', function () {
 
   describe('#sortedItems', function () {
 
-    it("should have the same amount of items as #items");
+    it("has the same amount of items as #items");
 
   });
 
