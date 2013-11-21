@@ -42,6 +42,9 @@ t3.views.todo.Item = function (values) {
     self.text(self.editors.text.newValue());
     self.editors.currentActive(undefined);
   };
+  self.editors.text.cancel = function () {
+    self.editors.currentActive(undefined);
+  };
 
   self.editors.priority = {};
   self.editors.priority.newValue = ko.observable();
@@ -59,6 +62,9 @@ t3.views.todo.Item = function (values) {
     self.priority(self.editors.priority.newValue());
     self.editors.currentActive(undefined);
   };
+  self.editors.priority.cancel = function () {
+    self.editors.currentActive(undefined);
+  };
 
   self.editors.due_date = {};
   self.editors.due_date.newValue = ko.observable();
@@ -74,6 +80,9 @@ t3.views.todo.Item = function (values) {
   };
   self.editors.due_date.save = function () {
     self.due_date(self.editors.due_date.newValue());
+    self.editors.currentActive(undefined);
+  };
+  self.editors.due_date.cancel = function () {
     self.editors.currentActive(undefined);
   };
 

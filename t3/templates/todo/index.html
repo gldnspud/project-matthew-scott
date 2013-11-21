@@ -11,6 +11,7 @@ active
   <script type="text/javascript" src="{% static 'vendor/pubsubjs/1.4.0/pubsub.js' %}"></script>
   <script type="text/javascript" src="{% static 'vendor/underscore/1.5.0/underscore-min.js' %}"></script>
 
+  <script type="text/javascript" src="{% static 'js/bindinghandlers.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/project.js' %}"></script>
 
   <script type="text/javascript">
@@ -71,6 +72,7 @@ active
                        data-bind="hasFocus: editors.text.isActive,
                                   value: editors.text.newValue,
                                   valueUpdate: 'afterkeydown',
+                                  escPress: editors.text.cancel,
                                   event: {blur: editors.text.save}" />
               </form>
             </td>
@@ -90,6 +92,7 @@ active
                   <select class="form-control input-sm"
                           data-bind="hasFocus: editors.priority.isActive,
                                      value: editors.priority.newValue,
+                                     escPress: editors.priority.cancel,
                                      event: {change: editors.priority.save,
                                              blur: editors.priority.save}">
                     <option>1</option>
@@ -122,6 +125,7 @@ active
                        data-bind="hasFocus: editors.due_date.isActive,
                                   value: editors.due_date.newValue,
                                   valueUpdate: 'afterkeydown',
+                                  escPress: editors.due_date.cancel,
                                   event: {blur: editors.due_date.save}" />
               </form>
             </td>
