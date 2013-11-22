@@ -158,6 +158,19 @@ t3.views.todo.List = function () {
     // id: item
   };
 
+  self.orderedItemsKey = ko.observable('priority');
+  self.orderedItemsAscending = ko.observable(true);
+  self.orderedItems = ko.computed(function () {
+    var key = self.orderedItemsKey();
+    var ordered = _(self.items()).sortBy(function (item) {
+      return item[key]();
+    });
+    if (!self.orderedItemsAscending()) {
+      ordered.reverse();
+    }
+    return ordered;
+  });
+
   self.nextNewItemId = -1;
   self.newItemText = ko.observable('');
   self.canAddNewItem = ko.computed(function () {
