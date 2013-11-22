@@ -40,7 +40,7 @@ EOF
   chown vagrant.vagrant /home/vagrant/.bash*
 fi
 
-sudo -u vagrant bash -c "
+sudo -iu vagrant bash -c "
   . /usr/local/bin/virtualenvwrapper.sh;
   mkvirtualenv t3;
   cd /vagrant;
@@ -55,7 +55,7 @@ export DJANGO_SETTINGS_MODULE=t3.settings
 alias da=django-admin.py
 EOF
 
-sudo -u vagrant bash -c "
+sudo -iu vagrant bash -c "
   . /usr/local/bin/virtualenvwrapper.sh;
   workon t3;
   da syncdb --migrate --noinput;
