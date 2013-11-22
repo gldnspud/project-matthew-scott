@@ -18,6 +18,7 @@ apt-get -y install \
   python-dev \
   python-mode \
   python-pip \
+  sqlite3 \
   tig \
   tmux
 
