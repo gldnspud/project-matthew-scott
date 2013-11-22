@@ -58,6 +58,6 @@ EOF
 sudo -iu vagrant bash -c "
   . /usr/local/bin/virtualenvwrapper.sh;
   workon t3;
-  da syncdb --migrate --noinput;
-  da loaddata t3/fixtures/sample.yaml;
+  django-admin.py syncdb --migrate --noinput;
+  django-admin.py loaddata t3/fixtures/sample.yaml;
 "
