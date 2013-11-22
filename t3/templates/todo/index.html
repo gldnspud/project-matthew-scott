@@ -43,8 +43,28 @@ active
       <tr>
         <th style="width: 2em">&nbsp;<!-- completed --></th>
         <th>&nbsp;<!-- text --></th>
-        <th style="width: 5em">Priority</th>
-        <th style="width: 10em">Due</th>
+        <th style="width: 6em" data-bind="click: selectOrderedItemsKey('priority')">
+          Priority
+          <span data-bind="if: orderedItemsKey() == 'priority'">
+            <span data-bind="if: orderedItemsAscending">
+              <i class="glyphicon glyphicon-chevron-up"></i>
+            </span>
+            <span data-bind="ifnot: orderedItemsAscending">
+              <i class="glyphicon glyphicon-chevron-down"></i>
+            </span>
+          </span>
+        </th>
+        <th style="width: 10em" data-bind="click: selectOrderedItemsKey('due_date')">
+          Due
+          <span data-bind="if: orderedItemsKey() == 'due_date'">
+            <span data-bind="if: orderedItemsAscending">
+              <i class="glyphicon glyphicon-chevron-up"></i>
+            </span>
+            <span data-bind="ifnot: orderedItemsAscending">
+              <i class="glyphicon glyphicon-chevron-down"></i>
+            </span>
+          </span>
+        </th>
         <th style="width: 1em">&nbsp;<!-- delete --></th>
       </tr>
     </thead>
@@ -60,7 +80,7 @@ active
           </form>
         </td>
       </tr>
-      <!-- ko foreach: items -->
+      <!-- ko foreach: orderedItems -->
         <tr class="todo-item" data-bind="css: { completed: completed }">
           <td class="todo-checkbox">
             <input type="checkbox" data-bind="checked: completed, attr: { id: id }"/>
