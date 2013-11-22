@@ -12,6 +12,7 @@ apt-get -y dist-upgrade
 apt-get -y install \
   avahi-daemon \
   build-essential \
+  curl \
   emacs23-nox \
   git \
   python-dev \
