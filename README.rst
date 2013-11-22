@@ -66,6 +66,50 @@ provided during a `Toptal <http://toptal.com/>` screening process:
       probably a signup/register screen.
 
 
+Third-party libraries used
+==========================
+
+- `Django 1.6 <http://djangoproject.com/>`__
+  (app server)
+
+- `django-allauth <https://pypi.python.org/pypi/django-allauth>`__
+  (signup and login)
+
+- `djangorestframework <https://pypi.python.org/pypi/djangorestframework>`__
+  (REST API)
+
+- `django-werkzeug-debugger-runserver <https://pypi.python.org/pypi/django-werkzeug-debugger-runserver>`__
+  (in-browser Python debugging)
+
+- `South <https://pypi.python.org/pypi/South>`__
+  (db migrations)
+
+- `Bootstrap 3 <http://getbootstrap.com/>`__
+  (styling and components)
+
+- `Bootstrap date picker <http://bootstrap-datepicker.readthedocs.org/en/latest/>`__
+  (date-picker widget)
+
+- `jQuery <http://jquery.com/>`__
+  (DOM selection and manipulation; required by Bootstrap)
+
+- `json2 <https://github.com/douglascrockford/JSON-js/>`__
+  (JSON encoding)
+
+- `Knockout <http://knockoutjs.com/>`__
+  (declarative UI with model-view-viewmodel architecture)
+
+- `Mocha <http://visionmedia.github.io/mocha/>`__
+  with `Chai <http://chaijs.com/>`__
+  (client-side viewmodel unit tests)
+
+- `PubSubJS <https://github.com/mroderick/PubSubJS>`__
+  (client-side pub/sub)
+
+- `Underscore <http://documentcloud.github.io/underscore/>`__
+  (functional style programming and other tools)
+
+
 License and Copyright
 =====================
 
