@@ -2,8 +2,8 @@
 
 NEWHOSTNAME=t3
 
-set -i -e s/precise64/${NEWHOSTNAME}/ /etc/hostname
-set -i -e s/precise64/${NEWHOSTNAME}/ /etc/hosts
+sed -i -e s/precise64/${NEWHOSTNAME}/ /etc/hostname
+sed -i -e s/precise64/${NEWHOSTNAME}/ /etc/hosts
 hostname ${NEWHOSTNAME}
 
 apt-get update
@@ -31,11 +31,11 @@ chown -R vagrant.vagrant ${VENV_DIRS}
 if ! grep -q virtualenvwrapper /home/vagrant/.bashrc; then
   cat > /home/vagrant/.bash_profile <<EOF
 . /usr/local/bin/virtualenvwrapper.sh
-export WORKON_HOME=$HOME/.virtualenvs
+export WORKON_HOME=\$HOME/.virtualenvs
 EOF
   cat >> /home/vagrant/.bashrc <<EOF
 . /usr/local/bin/virtualenvwrapper.sh
-export WORKON_HOME=$HOME/.virtualenvs
+export WORKON_HOME=\$HOME/.virtualenvs
 EOF
   chown vagrant.vagrant /home/vagrant/.bash*
 fi
