@@ -93,7 +93,8 @@ describe('todo.List', function () {
       setup();
       list.orderedItemsKey('due_date');
       var ids = _(list.orderedItems()).map(function (item) { return item.id(); });
-      var expected = [2, 1, 3];
+      var expected = [3, 2, 1];
+      console.log(ids, expected);
       assert(_.isEqual(ids, expected));
     });
 
@@ -102,7 +103,8 @@ describe('todo.List', function () {
       list.orderedItemsKey('due_date');
       list.orderedItemsAscending(false);
       var ids = _(list.orderedItems()).map(function (item) { return item.id(); });
-      var expected = [3, 1, 2];
+      var expected = [1, 2, 3];
+      console.log(ids, expected);
       assert(_.isEqual(ids, expected));
     });
   });
