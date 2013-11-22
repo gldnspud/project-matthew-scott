@@ -95,9 +95,12 @@ t3.views.todo.Item = function (values) {
     }
   };
   self.editors.text.save = function () {
-    self.text(self.editors.text.newValue());
+    var newValue = self.editors.text.newValue();
+    if (newValue !== '') {
+      self.text(self.editors.text.newValue());
+      self.persist();
+    }
     self.editors.currentActive(undefined);
-    self.persist();
   };
   self.editors.text.cancel = function () {
     self.editors.currentActive(undefined);
