@@ -78,6 +78,8 @@ t3.views.todo.Item = function (values) {
 
   self.editors.currentActive = ko.observable();
 
+  // TODO: This could be factory-built instead of three separate sets:
+
   self.editors.text = {};
   self.editors.text.newValue = ko.observable();
   self.editors.text.isActive = ko.computed(function () {
