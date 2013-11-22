@@ -8,13 +8,86 @@ active
 
 {% block content %}
 
-  <h1>{{ user.username }}'s profile</h1>
+  {% with request.META.HTTP_HOST as host %}
 
-  <dl>
+    <h1>{{ user.username }}'s profile</h1>
 
-    <dt>API Token</dt>
-    <dd>{{ token.key }}</dd>
+    <dl>
 
-  </dl>
+      <dt>API Token</dt>
+      <dd>{{ token.key }}</dd>
+
+    </dl>
+
+    <h2>API documentation</h2>
+
+    <p>
+      Refer to these example <a href="http://curl.haxx.se/">curl</a> commands
+      to learn how to use the API.
+    </p>
+
+    <h3>Get a list of todo items</h3>
+
+<pre>$ curl -X get http://{{ request.META.HTTP_HOST }}/api/items/ \
+  -H 'Authorization: Token {{ token.key }}'</pre>
+
+    <h4>Sort list of items by due date or priority</h4>
+
+<pre>$ curl -X get 'http://{{ request.META.HTTP_HOST }}/api/items/?ordering=due_date' \
+  -H 'Authorization: Token {{ token.key }}'</pre>
+
+<pre>$ curl -X get 'http://{{ request.META.HTTP_HOST }}/api/items/?ordering=priority' \
+  -H 'Authorization: Token {{ token.key }}'</pre>
+
+    <p>Sort in descending order by prefixing the key with <code>-</code>:</p>
+
+<pre>$ curl -X get 'http://{{ request.META.HTTP_HOST }}/api/items/?ordering=-due_date' \
+  -H 'Authorization: Token {{ token.key }}'</pre>
+
+<pre>$ curl -X get 'http://{{ request.META.HTTP_HOST }}/api/items/?ordering=-priority' \
+  -H 'Authorization: Token {{ token.key }}'</pre>
+
+    <h3>Get an individual item</h3>
+
+<pre>$ curl -X get http://{{ request.META.HTTP_HOST }}/api/items/1/ \
+  -H 'Authorization: Token {{ token.key }}'</pre>
+
+    <h3>Add a new item</h3>
+
+    <ul>
+      <li>Your new item will be returned, including the server-assigned <code>id</code>.</li>
+      <li><code>text</code> is required.</li>
+      <li><code>completed</code> default is <code>false</code></li>
+      <li><code>priority</code> default value is <code>1</code>.</li>
+      <li><code>due_date</code> default value is <code>null</code>.</li>
+    </ul>
+
+<pre>$ curl -X post http://{{ request.META.HTTP_HOST }}/api/items/ \
+  -d '{"text": "Todo Item Text", "priority": 1, "due_date": "2013-12-12"}' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Token {{ token.key }}'</pre>
+
+    <h3>Update an item</h3>
+
+<pre>$ curl -X patch http://{{ request.META.HTTP_HOST }}/api/items/1/ \
+  -d '{"text": "New Item Text", "priority": 2, "due_date": null, "completed": false}' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Token {{ token.key }}'</pre>
+
+    <h4>Updating only selected fields</h4>
+
+    <p>Use <code>PATCH</code> instead of <code>PUT</code>:</p>
+
+<pre>$ curl -X patch http://{{ request.META.HTTP_HOST }}/api/items/1/ \
+  -d '{"completed": true}' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Token {{ token.key }}'</pre>
+
+    <h3>Remove an item</h3>
+
+<pre>$ curl -X delete http://{{ request.META.HTTP_HOST }}/api/items/1/ \
+  -H 'Authorization: Token {{ token.key }}'</pre>
+
+  {% endwith %}
 
 {% endblock %}
