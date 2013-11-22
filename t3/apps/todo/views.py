@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
-from rest_framework import filters, viewsets
+from rest_framework import authentication, filters, viewsets
 
 from .models import Item
 from .serializers import ItemSerializer
@@ -11,6 +11,10 @@ class ItemViewSet(viewsets.ModelViewSet):
 
     model = Item
     serializer_class = ItemSerializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
     filter_backends = (filters.OrderingFilter,)
 
     def get_queryset(self):
