@@ -21,7 +21,9 @@ requests==2.0.1
 oauthlib==0.6.0
 
 # Database migration
-south==0.8.3
+# Do not use south 0.8.3 -- it's incompatible with Django 1.6:
+# http://south.aeracode.org/ticket/1320
+south==0.8.2
 
 # YAML support
 PyYAML==3.10
